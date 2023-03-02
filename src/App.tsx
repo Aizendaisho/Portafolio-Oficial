@@ -12,7 +12,7 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className=" bg-slate-800 h-screen text-white">
+    <div className=" bg-slate-800 text-white">
       <Navbar />
       <div className="content container mx-auto">
         <Header />
