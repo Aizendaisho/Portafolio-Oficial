@@ -22,8 +22,8 @@ export default function App() {
         <Formacion />
         <Experiencia />
         <Contacto />
-        <Footer />
       </div>
+        <Footer />
     </div>
   );
 }
