@@ -22,3 +22,7 @@
     background: #0f0f0f;
     transform-origin: top;
 }
+
+.active{
+    text-underline-offset: 2px;
+}

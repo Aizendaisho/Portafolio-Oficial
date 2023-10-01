@@ -19,6 +19,7 @@ export default function App() {
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
       <Route path="contact" element={<Contact />} />
+      <Route path="*" element={<h1 className="text-center text-white text-xl font-bold">404</h1>} />
     </Routes >
     </AnimatePresence>
 
