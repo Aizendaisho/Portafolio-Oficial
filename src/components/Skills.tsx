@@ -21,7 +21,7 @@ import {
 
 export default function Skills() {
   return (
-    <div className="h-screen mt-10 grid place-content-center text-4xl">
+    <div className="h-screen mt-10 flex items-center justify-center text-4xl gap-4">
       <AiFillHtml5 className="text-orange-400" />
       <FaCss3Alt className="text-blue-600" />
       <SiJavascript className="text-yellow-300" />

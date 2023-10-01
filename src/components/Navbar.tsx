@@ -8,13 +8,15 @@ import {
   FaTruckLoading,
   FaSuitcase,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="sticky bg-slate-800 top-0 navbar flex items-center justify-between shadow-xl mb-4 z-10">
-      <div className="logo">
+    <nav className="sticky bg-slate-800 top-0 navbar flex items-center justify-between shadow-xl  z-10 text-white">
+      <Link to={"/"} className="logo">
         <img src={logo} alt="logo" className="h-10 object-cover md:h-12 " />
-      </div>
+        
+      </Link>
 
       {/* <div className="correo mr-1 text-md md:text-lg lg:text-2xl font-bold text-green-300 font-serif tracking-wider lowercase">
         {" "}
@@ -38,21 +40,21 @@ export default function Navbar() {
       </div>
 
       <ul className=" hidden md:flex items-center justify-between gap-4">
-        <li className=" btn btn-ghost btn-xs flex gap-2 items-center justify-center">
+        <Link to={"/about"} className=" btn btn-ghost btn-xs flex gap-2 items-center justify-center">
           <FaIdCardAlt /> About Me
-        </li>
-        <li className=" btn btn-ghost btn-xs flex gap-2 items-center justify-center">
+        </Link>
+        <Link to={"/contact"} className=" btn btn-ghost btn-xs flex gap-2 items-center justify-center">
           <FaUserTie /> Skill
-        </li>
-        <li className=" btn btn-ghost btn-xs flex gap-2 items-center justify-center">
+        </Link>
+        <Link to={"/hobbies"} className=" btn btn-ghost btn-xs flex gap-2 items-center justify-center">
           <FaSkating /> Hobbies
-        </li>
-        <li className=" btn btn-ghost btn-xs flex gap-2 items-center justify-center">
+        </Link>
+        <Link to={"/Experience"} className=" btn btn-ghost btn-xs flex gap-2 items-center justify-center">
           <FaTruckLoading /> Experience
-        </li>
-        <li className=" btn btn-ghost btn-xs flex gap-2 items-center justify-center">
+        </Link>
+        <Link to={"/Proyects"} className=" btn btn-ghost btn-xs flex gap-2 items-center justify-center">
           <FaSuitcase /> Proyects
-        </li>
+        </Link>
       </ul>
     </nav>
   );
