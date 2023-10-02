@@ -5,6 +5,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 import { AnimatePresence } from 'framer-motion';
+import Footer from './components/Footer';
 
 
 export default function App() {
@@ -22,7 +23,7 @@ export default function App() {
       <Route path="*" element={<h1 className="text-center text-white text-xl font-bold">404</h1>} />
     </Routes >
     </AnimatePresence>
-
+    <Footer />
     </>
   );
 }

@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 
+html {
+    scroll-behavior: smooth;
+  }
+  
+
 .slide-in{
     position: fixed;
     top: 0;

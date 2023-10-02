@@ -3,7 +3,7 @@ import React from "react";
 
 export default function AboutMe() {
   return (
-    <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 mb-10">
+    <div className="min-h-screen sm:h-64 xl:h-80 2xl:h-96 mb-10" id="about">
       <h3 className=" md:text-center text-start text-3xl font-bold uppercase m-4">
         About Me
       </h3>

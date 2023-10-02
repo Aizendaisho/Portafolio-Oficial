@@ -11,9 +11,8 @@ import transition from '../Transition'
 
 function Home() {
   return (
-    <div className=" bg-slate-800 text-white">
-    {/* <Navbar /> */}
-    <div className="content container mx-auto">
+    <div className=" bg-slate-800 text-white ">
+    <div className="content container mx-auto scroll-smooth">
       <Header />
       <AboutMe />
       <Skills />
@@ -22,7 +21,6 @@ function Home() {
       <Experiencia />
       <Contacto />
     </div>
-      <Footer />
   </div>
   )
 }

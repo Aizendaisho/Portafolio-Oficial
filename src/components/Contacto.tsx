@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Contacto() {
   return (
-    <div className="grid m-10">
+    <div className="grid min-h-screen" id="contacto">
 
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 place-self-center text-black ">
       <div className="card-body ">
