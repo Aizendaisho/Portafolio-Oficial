@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo-porta.png";
-import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
-import { motion } from "framer-motion";
+import { AiFillHome, AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   FaIdCardAlt,
   FaUserTie,
@@ -10,14 +10,6 @@ import {
   FaSuitcase,
 } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
-
-
-const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
-  }
-};
 
 interface TitleProps {
   title: string;
@@ -29,6 +21,12 @@ interface TitleLink {
   title: string;
 }
 
+interface MobilLinks {
+  title: string;
+  href: string;
+  onClick: () => void;
+}
+
 const titleAnimation = {
   rest: {
     transition: {
@@ -38,6 +36,22 @@ const titleAnimation = {
   hover: {
     transition: {
       staggerChildren: 0.003,
+    },
+  },
+};
+const menuLinksVariants = {
+  initial: {
+    y: "50vh",
+    transition: {
+      duration: 0.7,
+      ease: [0.37, 0, 0.63, 1],
+    },
+  },
+  open: {
+    y: 0,
+    transition: {
+      ease: [0, 0.55, 0.45, 1],
+      duration: 1.2,
     },
   },
 };
@@ -67,6 +81,22 @@ const letterAnimationTwo = {
       type: "tween",
     },
   },
+};
+
+const MobileLinks = ({ title, href, onClick }: MobilLinks) => {
+  return (
+    <motion.div
+      variants={menuLinksVariants}
+      initial="initial"
+      animate="open"
+      className="flex flex-col items-center"
+      onClick={onClick}
+     >
+      <a href={`#${href}`} className="text-lg font-bold text-center">
+        {title}
+      </a>
+    </motion.div>
+  );
 };
 
 const linksNav = [
@@ -126,27 +156,65 @@ const AnimatedWord = ({ title, animation, isHover }: TitleProps) => {
 };
 
 export default function Navbar() {
-  const [currentSection, setCurrentSection] = useState(''); 
+  const [open, setOpen] = useState(false);
+  const toogleMenu = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+  const [currentSection, setCurrentSection] = useState("");
   const determineCurrentSection = () => {
-    const sections = linksNav.map((link) => link.path); // Lista de secciones
+    const sections = linksNav.map((link) => link.path);
     for (const section of sections) {
       const element = document.getElementById(section);
       if (element) {
         const rect = element.getBoundingClientRect();
         if (rect.top <= 0 && rect.bottom >= 0) {
           setCurrentSection(section);
-          break; // Solo marcamos la primera sección que se encuentre en la vista
+          break;
         }
       }
     }
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', determineCurrentSection);
+    window.addEventListener("scroll", determineCurrentSection);
     return () => {
-      window.removeEventListener('scroll', determineCurrentSection);
+      window.removeEventListener("scroll", determineCurrentSection);
     };
   }, []);
+
+  const menuVariants = {
+    initial: {
+      scaleY: 0,
+    },
+    animate: {
+      scaleY: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.12, 0, 0.39, 0],
+      },
+    },
+    exit: {
+      scaleY: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const menuContainerVariants = {
+    initial: {
+      transition: {
+        staggerChildren: 0.9,
+      },
+    },
+    open: {
+      transition: {
+        staggerChildren: 0.9,
+        delayChildren: 0.4,
+      },
+    },
+  };
 
   return (
     <nav className="sticky bg-slate-800 top-0 navbar flex items-center justify-between shadow-xl  z-10 text-white">
@@ -159,34 +227,65 @@ export default function Navbar() {
         AraldiGarcia@hotmail.com
       </div> */}
 
-      <div className="dropdown dropdown-end">
-        <label tabIndex={0} className="btn btn-ghost m-1 md:hidden text-2xl ">
-          <AiOutlineMenu />
-        </label>
-        <ul
-          tabIndex={0}
-          className="dropdown-content menu p-2 shadow rounded-box w-52 bg-slate-800"
-        >
-          <li className=" btn btn-ghost">About Me</li>
-          <li className=" btn btn-ghost">Skills</li>
-          <li className=" btn btn-ghost">Hobbies</li>
-          <li className=" btn btn-ghost">Experience</li>
-          <li className=" btn btn-ghost">Proyect</li>
-        </ul>
+      <div className="">
+        <AiOutlineMenu
+          onClick={toogleMenu}
+          className="md:hidden cursor-pointer"
+        />
+
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              variants={menuVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="md:hidden fixed left-0 top-0 w-full h-screen origin-top bg-slate-500 text-white p-10"
+            >
+              <div className="flex h-full  flex-col">
+                <div className="flex justify-between">
+                  <h1 className="text-lq">Portafolio</h1>
+                  <AiOutlineClose
+                    onClick={toogleMenu}
+                    className="cursor-pointer text-2xl"
+                  />
+                </div>
+
+                <motion.div
+                  variants={menuContainerVariants}
+                  initial="initial"
+                  animate="open"
+                  className="flex flex-col items-center justify-center h-full gap-10 text-center text-xl font-bold uppercase tracking-wider text-green-300 font-serif "
+                >
+                  {linksNav.map((links, index) => (
+                    <div className="overflow-hidden">
+                      <MobileLinks href={`${links.path}`} title={links.name} key={index} onClick={toogleMenu}  />
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      <ul className=" hidden md:flex items-center justify-between gap-6">
+      <ul className=" hidden md:flex items-center justify-between gap-6 transition-all">
         {linksNav.map((link) => (
           <li key={link.name}>
             <a
-            href={`#${link.path}`}
-              className={`flex gap-2 items-center justify-center ${currentSection === link.path ? 'bg-blue-500' : ''}`}    >
+              href={`#${link.path}`}
+              className={`flex gap-2 items-center justify-center ${
+                currentSection === link.path
+                  ? "bg-blue-500 px-2.5 py-1 rounded-md"
+                  : ""
+              }`}
+            >
               {link.icon}
               <AnimatedLinks title={link.name} />
             </a>
           </li>
         ))}
-                {/* {linksNav.map((link) => (
+        {/* {linksNav.map((link) => (
           <li key={link.name}>
             <NavLink
               to={link.path}
