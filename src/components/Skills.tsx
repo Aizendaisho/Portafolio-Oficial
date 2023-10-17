@@ -21,6 +21,7 @@ import IconNextdotjs from "./icons/NextIcon";
 import IconAstro from "./icons/AstroIcon";
 import IconBxlRedux from "./icons/ReduxIcon";
 import { motion } from "framer-motion";
+import SkillMagnetic from "./SkillMagnetic";
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -110,50 +111,45 @@ const iconsAndName = [
   {
     icon: <IconBxlRedux />,
     name: "Redux",
-  }
+  },
 ];
 
-const varList ={
-  initial:{
-    opacity:0,
-    y:100
+const varList = {
+  initial: {
+    opacity: 0,
+    y: 100,
   },
-  animate:(index: number)=>(
-    {
-      opacity:1,
-      y:0,
-      transition:{
-        duration: 0.05 * index
-      }
-    }
-  ),
-
-
-}
+  animate: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.05 * index,
+    },
+  }),
+};
 
 export default function Skills() {
   return (
     <div className="min-h-screen grid place-content-center gap-10" id="skills">
-    <h1 className="text-center text-4xl font-bold">Skills</h1>
-    <div
-     className="grid lg:grid-cols-8 place-content-center text-xl gap-6 grid-cols-4 md:grid-cols-6">
-      {iconsAndName.map((iconAndName, index) => (
-        <motion.div
-          key={index}
-          variants={varList}
-          initial="initial"
-          whileInView={"animate"}
-          viewport={{ once: true }}
-          custom={index}
-          className="flex flex-col items-center justify-center"
-        ><span className="text-3xl">
-
-          {iconAndName.icon}
-        </span>
-          <p className="text-center">{iconAndName.name}</p>
-        </motion.div>
-      ))}
-    </div>
+      <h1 className="text-center text-4xl font-bold">Skills</h1>
+      <div className="grid lg:grid-cols-8 place-content-center text-xl gap-6 grid-cols-4 md:grid-cols-6">
+        {iconsAndName.map((iconAndName, index) => (
+          <SkillMagnetic>
+            <motion.div
+              key={index}
+              variants={varList}
+              initial="initial"
+              whileInView={"animate"}
+              viewport={{ once: true }}
+              custom={index}
+              className="flex flex-col items-center justify-center"
+            >
+              <span className="text-3xl">{iconAndName.icon}</span>
+              <p className="text-center">{iconAndName.name}</p>
+            </motion.div>
+          </SkillMagnetic>
+        ))}
+      </div>
     </div>
   );
 }
