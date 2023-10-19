@@ -130,7 +130,7 @@ const varList = {
 
 export default function Skills() {
   return (
-    <div className="min-h-screen grid place-content-center gap-10" id="skills">
+    <div className="min-h-screen grid place-content-center gap-10 pt-8" id="skills">
       <h1 className="text-center text-4xl font-bold">Skills</h1>
       <div className="grid lg:grid-cols-8 place-content-center text-xl gap-6 grid-cols-4 md:grid-cols-6">
         {iconsAndName.map((iconAndName, index) => (

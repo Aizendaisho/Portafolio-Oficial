@@ -8,17 +8,19 @@ import Header from '../components/Header'
 import Hobbies from '../components/Hobbies'
 import Skills from '../components/Skills'
 import transition from '../Transition'
+import AllServices from '../components/AllServices'
 
 function Home() {
   return (
     <div className=" bg-slate-800 text-white ">
     <div className="content container mx-auto scroll-smooth">
       <Header />
-      <AboutMe />
+      <AllServices />
+      {/* <AboutMe /> */}
       <Skills />
       <Hobbies />
-      <Formacion />
-      <Experiencia />
+      {/* <Formacion />
+      <Experiencia /> */}
       <Contacto />
     </div>
   </div>

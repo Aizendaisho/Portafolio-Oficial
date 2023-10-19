@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo-porta.png";
-import { AiFillHome, AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { AiFillHome, AiOutlineClose, AiOutlineMenu, AiFillExperiment } from "react-icons/ai";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   FaIdCardAlt,
@@ -89,7 +89,7 @@ const MobileLinks = ({ title, href, onClick }: MobilLinks) => {
       variants={menuLinksVariants}
       initial="initial"
       animate="open"
-      className="flex flex-col items-center"
+      className="flex flex-col items-center hover:bg-green-900"
       onClick={onClick}
      >
       <a href={`#${href}`} className="text-lg font-bold text-center">
@@ -101,11 +101,12 @@ const MobileLinks = ({ title, href, onClick }: MobilLinks) => {
 
 const linksNav = [
   { path: "home", name: "Home", icon: <AiFillHome /> },
-  { path: "about", name: "About Me", icon: <FaIdCardAlt /> },
+  { path: "services", name: "Services", icon: <AiFillExperiment /> },
+  // { path: "about", name: "About Me", icon: <FaIdCardAlt /> },
   { path: "skills", name: "Skills", icon: <FaUserTie /> },
-  { path: "hobbies", name: "Hobbies", icon: <FaSkating /> },
-  { path: "proyect", name: "Proyect", icon: <FaSuitcase /> },
-  { path: "experience", name: "Experience", icon: <FaTruckLoading /> },
+  { path: "hobbies", name: "Proyects", icon: <FaSkating /> },
+  // { path: "proyect", name: "Proyect", icon: <FaSuitcase /> },
+  { path: "contacto", name: "Contact", icon: <FaTruckLoading /> },
 ];
 
 const AnimatedLinks = ({ title }: TitleLink) => {
@@ -230,7 +231,7 @@ export default function Navbar() {
       <div className="">
         <AiOutlineMenu
           onClick={toogleMenu}
-          className="md:hidden cursor-pointer"
+          className="md:hidden cursor-pointer mr-8"
         />
 
         <AnimatePresence>
