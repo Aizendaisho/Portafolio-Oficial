@@ -1,16 +1,6 @@
 import React,{useRef, useState} from 'react'
 import { motion } from 'framer-motion';
-
-interface ChildrenProps {
-    children: React.ReactNode; 
-
-}
-
-interface statePosition {
-    x: number;
-    y: number;
-
-}
+import { ChildrenProps, statePosition } from '../interfaces';
 
 function SkillMagnetic({children}: ChildrenProps) {
     const ref = useRef<null | HTMLDivElement>(null);
