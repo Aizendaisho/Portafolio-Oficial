@@ -33,3 +33,14 @@ export interface ProyectosProps {
   imagen: string;
 
 }
+
+export interface SingleProyectProps {
+  id:string;
+  name: string;
+  descripcion: string;
+  url: string;
+  github: string;
+  tecnologys: string[];
+
+}
+

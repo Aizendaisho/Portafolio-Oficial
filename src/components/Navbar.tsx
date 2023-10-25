@@ -7,40 +7,10 @@ import {
   AiFillExperiment,
 } from "react-icons/ai";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  FaIdCardAlt,
-  FaUserTie,
-  FaSkating,
-  FaTruckLoading,
-  FaSuitcase,
-} from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
-import { MobilLinks, TitleLink, TitleProps } from "../interfaces";
-import {
-  menuLinksVariants,
-  letterAnimation,
-  letterAnimationTwo,
-  titleAnimation,
-  menuContainerVariants,
-  menuVariants,
-} from "../animation";
-
-const MobileLinks = ({ title, href, onClick }: MobilLinks) => {
-  return (
-    <motion.div
-      variants={menuLinksVariants}
-      initial="initial"
-      animate="open"
-      className="flex flex-col items-center hover:underline transition-transform"
-      onClick={onClick}
-    >
-      <a href={`#${href}`} className="text-lg font-bold text-center">
-        {title}
-      </a>
-    </motion.div>
-  );
-};
-
+import { FaUserTie, FaSkating, FaTruckLoading } from "react-icons/fa";
+import { menuContainerVariants, menuVariants } from "../animation";
+import { MobileLinks } from "./uiComponents/MobileLinksComponents";
+import { AnimatedLinks } from "./uiComponents/AnimatedLinks";
 const linksNav = [
   { path: "home", name: "Home", icon: <AiFillHome /> },
   { path: "services", name: "Services", icon: <AiFillExperiment /> },
@@ -48,54 +18,6 @@ const linksNav = [
   { path: "hobbies", name: "Proyects", icon: <FaSkating /> },
   { path: "contacto", name: "Contact", icon: <FaTruckLoading /> },
 ];
-
-const AnimatedLinks = ({ title }: TitleLink) => {
-  const [isHover, setIsHover] = useState(false);
-  return (
-    <motion.div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      className="relative cursor-pointer overflow-hidden"
-    >
-      <AnimatedWord
-        title={title}
-        animation={letterAnimation}
-        isHover={isHover}
-      />
-      <div className="absolute top-0">
-        <AnimatedWord
-          title={title}
-          animation={letterAnimationTwo}
-          isHover={isHover}
-        />
-      </div>
-    </motion.div>
-  );
-};
-const AnimatedWord = ({ title, animation, isHover }: TitleProps) => {
-  return (
-    <motion.span
-      className="relative whitespace-nowrap"
-      variants={titleAnimation}
-      initial="rest"
-      animate={isHover ? "hover" : "rest"}
-    >
-      {title.split("").map((letter, index) =>
-        letter === " " ? (
-          <span key={index}>&nbsp;</span>
-        ) : (
-          <motion.span
-            className="relative inline-block whitespace-nowrap"
-            variants={animation}
-          >
-            {letter}
-          </motion.span>
-        )
-      )}
-    </motion.span>
-  );
-};
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const toogleMenu = () => {
@@ -134,7 +56,6 @@ export default function Navbar() {
           onClick={toogleMenu}
           className="md:hidden cursor-pointer mr-8"
         />
-
         <AnimatePresence>
           {open && (
             <motion.div
@@ -175,7 +96,6 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </div>
-
       <ul className=" hidden md:flex items-center justify-between gap-6 transition-all">
         {linksNav.map((link) => (
           <li key={link.name}>

@@ -17,7 +17,7 @@ function AllServices() {
       <h1 className="text-center text-4xl font-bold">Servicios</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6 place-content-center">
         {servicios.map((servicios) => (
-          <Services key={servicios.nombre} servicios={servicios} />
+          <Services key={servicios.id} servicios={servicios} />
         ))}
       </div>
     </motion.div>
